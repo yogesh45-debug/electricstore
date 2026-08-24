@@ -31,6 +31,7 @@ def create_app():
     app.register_blueprint(admin_bp, url_prefix='/api/admin')
     
     @app.route('/health', methods=['GET'])
+    @app.route('/api/health', methods=['GET'])
     def health():
         return jsonify({'status': 'ok', 'message': 'ElectroStore API is running'}), 200
 
