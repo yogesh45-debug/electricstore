@@ -10,8 +10,8 @@ def create_app():
     app.config.from_object(Config)
     app.config['JWT_VERIFY_SUB'] = False
     
-    # Enable CORS for the API
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    # Enable CORS for all endpoints
+    CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
     
     # Initialize Database and JWT Manager
     db.init_app(app)
