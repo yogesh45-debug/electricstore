@@ -340,13 +340,13 @@ const Catalog = () => {
                         <div className="stock-badge-low">LOW STOCK ({product.stock})</div>
                       ) : null}
 
-                      <div className="product-image-container" style={{ height: '170px' }}>
+                      <Link to={`/products/${product.id}`} className="product-image-container" style={{ height: '170px', display: 'block' }}>
                         <img 
                           src={product.image_url || 'https://via.placeholder.com/300x200'} 
                           alt={product.name} 
                           className="product-image"
                         />
-                      </div>
+                      </Link>
 
                       <div className="product-info">
                         <span className="product-brand">{product.brand}</span>

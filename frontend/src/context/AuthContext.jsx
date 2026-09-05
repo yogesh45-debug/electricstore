@@ -1,9 +1,11 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { authAPI } from '../services/api';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [customerUser, setCustomerUser] = useState(null);
   const [adminUser, setAdminUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -82,18 +84,22 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     const isAdminPath = window.location.pathname.startsWith('/admin');
+    
+    localStorage.removeItem('electrostore_customer_token');
+    localStorage.removeItem('electrostore_admin_token');
+    setCustomerUser(null);
+    setAdminUser(null);
+
     if (isAdminPath) {
-      localStorage.removeItem('electrostore_admin_token');
-      setAdminUser(null);
+      navigate('/admin/login');
     } else {
-      localStorage.removeItem('electrostore_customer_token');
-      setCustomerUser(null);
+      navigate('/login');
     }
   };
 
   // Determine active user based on current route
   const isAdminPath = window.location.pathname.startsWith('/admin') && window.location.pathname !== '/admin/login';
-  const user = isAdminPath ? adminUser : customerUser;
+  const user = isAdminPath ? adminUser : (customerUser || adminUser);
 
   return (
     <AuthContext.Provider value={{

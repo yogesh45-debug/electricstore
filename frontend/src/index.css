@@ -1,5 +1,5 @@
 /* ElectroStore Design Token System */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
   /* Color Palette */
@@ -23,8 +23,8 @@
   --color-info: #3B82F6;
   
   /* Typography */
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-tech: 'JetBrains Mono', monospace;
   
   /* Shadows */
@@ -1263,6 +1263,63 @@ html, body {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+/* ============================================
+   SUBTLE FLOATING BACKGROUND GLOWS
+   ============================================ */
+.bg-blobs-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.05;
+  transition: opacity 0.5s ease;
+}
+
+:root[data-theme="dark"] .bg-blob {
+  opacity: 0.08;
+}
+
+.blob-1 {
+  top: -10%;
+  left: 10%;
+  width: 500px;
+  height: 500px;
+  background: var(--primary-accent);
+  animation: floatBlob1 25s infinite alternate ease-in-out;
+}
+
+.blob-2 {
+  bottom: -15%;
+  right: 5%;
+  width: 600px;
+  height: 600px;
+  background: var(--secondary-accent);
+  animation: floatBlob2 30s infinite alternate ease-in-out;
+}
+
+@keyframes floatBlob1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(80px, 60px) scale(1.1); }
+  100% { transform: translate(-40px, 120px) scale(0.95); }
+}
+
+@keyframes floatBlob2 {
+  0% { transform: translate(0, 0) scale(1.05); }
+  50% { transform: translate(-100px, -80px) scale(0.9); }
+  100% { transform: translate(60px, 40px) scale(1.15); }
+}
+
 
 
 

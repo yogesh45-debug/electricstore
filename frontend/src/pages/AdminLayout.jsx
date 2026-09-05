@@ -10,7 +10,8 @@ import {
   AdsIcon, 
   StorefrontIcon, 
   HomeIcon,
-  ProfileIcon
+  ProfileIcon,
+  LogoIcon
 } from '../components/Icons';
 
 /* ── Inline Styles / Theme ─────────────────────────────────────────────── */
@@ -149,7 +150,7 @@ const AdminLayout = () => {
         {/* Logo */}
         <div style={{ padding: '24px 20px 20px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ fontSize: 24 }}>⚡</span>
+            <LogoIcon size={30} />
             <div>
               <div style={{ color: '#fff', fontWeight: 800, fontSize: 16, letterSpacing: '-0.02em' }}>
                 Electro<span style={{ color: ACCENT2 }}>Store</span>

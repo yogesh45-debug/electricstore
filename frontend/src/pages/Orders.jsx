@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { orderAPI } from '../services/api';
 import { AuthContext } from '../context/AuthContext';
+import { LogoIcon } from '../components/Icons';
 
 // Inline Modal Styles
 const modalOverlayStyle = {
@@ -82,7 +83,8 @@ const InvoiceModal = ({ order, onClose }) => {
         <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '2px solid var(--border-color)', paddingBottom: '16px', marginBottom: '20px' }}>
           <div>
             <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: 'var(--primary-accent)', display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--font-heading)' }}>
-              ⚡ ElectroStore
+              <LogoIcon size={24} />
+              <span>ElectroStore</span>
             </h2>
             <p style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Premium Electronics Destination</p>
             <p style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>GSTIN: 27AAAAA1111A1Z1</p>

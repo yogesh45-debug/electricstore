@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { authAPI } from '../services/api';
+import { EyeIcon, EyeOffIcon } from '../components/Icons';
 
 const Profile = () => {
   const { user, refreshUser } = useContext(AuthContext);
@@ -16,6 +17,9 @@ const Profile = () => {
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -185,38 +189,107 @@ const Profile = () => {
 
           <div className="form-group">
             <label className="form-label">Current Password</label>
-            <input
-              type="password"
-              className="form-control"
-              value={currentPassword}
-              onChange={e => setCurrentPassword(e.target.value)}
-              placeholder="Enter current password"
-              autoComplete="current-password"
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showCurrent ? "text" : "password"}
+                className="form-control"
+                value={currentPassword}
+                onChange={e => setCurrentPassword(e.target.value)}
+                placeholder="Enter current password"
+                autoComplete="current-password"
+                style={{ paddingRight: '40px' }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowCurrent(!showCurrent)}
+                style={{
+                  position: 'absolute',
+                  right: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: 'var(--text-secondary)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: 0
+                }}
+                aria-label={showCurrent ? "Hide password" : "Show password"}
+              >
+                {showCurrent ? <EyeOffIcon size={20} /> : <EyeIcon size={20} />}
+              </button>
+            </div>
           </div>
 
           <div className="profile-row-grid">
             <div className="form-group" style={{ marginBottom: 0 }}>
               <label className="form-label">New Password</label>
-              <input
-                type="password"
-                className="form-control"
-                value={newPassword}
-                onChange={e => setNewPassword(e.target.value)}
-                placeholder="Min. 6 characters"
-                autoComplete="new-password"
-              />
+              <div style={{ position: 'relative' }}>
+                <input
+                  type={showNew ? "text" : "password"}
+                  className="form-control"
+                  value={newPassword}
+                  onChange={e => setNewPassword(e.target.value)}
+                  placeholder="Min. 6 characters"
+                  autoComplete="new-password"
+                  style={{ paddingRight: '40px' }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowNew(!showNew)}
+                  style={{
+                    position: 'absolute',
+                    right: '12px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: 'var(--text-secondary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: 0
+                  }}
+                  aria-label={showNew ? "Hide password" : "Show password"}
+                >
+                  {showNew ? <EyeOffIcon size={20} /> : <EyeIcon size={20} />}
+                </button>
+              </div>
             </div>
             <div className="form-group" style={{ marginBottom: 0 }}>
               <label className="form-label">Confirm New Password</label>
-              <input
-                type="password"
-                className="form-control"
-                value={confirmPassword}
-                onChange={e => setConfirmPassword(e.target.value)}
-                placeholder="Re-enter new password"
-                autoComplete="new-password"
-              />
+              <div style={{ position: 'relative' }}>
+                <input
+                  type={showConfirm ? "text" : "password"}
+                  className="form-control"
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                  placeholder="Re-enter new password"
+                  autoComplete="new-password"
+                  style={{ paddingRight: '40px' }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirm(!showConfirm)}
+                  style={{
+                    position: 'absolute',
+                    right: '12px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: 'var(--text-secondary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: 0
+                  }}
+                  aria-label={showConfirm ? "Hide password" : "Show password"}
+                >
+                  {showConfirm ? <EyeOffIcon size={20} /> : <EyeIcon size={20} />}
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -14,7 +14,9 @@ import {
   ProductsIcon,
   OrdersIcon,
   OffersIcon,
-  AdsIcon
+  AdsIcon,
+  LogoIcon,
+  GitHubIcon
 } from './components/Icons';
 
 // Pages imports
@@ -152,6 +154,12 @@ const LayoutWrapper = () => {
 
   return (
     <div className="app-container">
+      {/* Dynamic Animated Background Glows */}
+      <div className="bg-blobs-wrapper">
+        <div className="bg-blob blob-1"></div>
+        <div className="bg-blob blob-2"></div>
+      </div>
+
       {!isAdminPage && (
         <header className="main-header" style={{ backgroundColor: showAdminHeader ? '#0B132B' : 'var(--header-bg)' }}>
           <div className="header-container" style={{ position: 'relative' }}>
@@ -166,7 +174,10 @@ const LayoutWrapper = () => {
               </button>
 
               <Link to={user && user.role === 'admin' ? "/admin" : "/"} className="logo">
-                ⚡ Electro<span className="logo-highlight" style={{ color: showAdminHeader ? '#17B8A6' : 'var(--primary-accent)' }}>Store</span>
+                <LogoIcon size={26} />
+                <span>
+                  Electro<span className="logo-highlight" style={{ color: showAdminHeader ? '#17B8A6' : 'var(--primary-accent)' }}>Store</span>
+                </span>
                 {showAdminHeader && <span style={{ fontSize: '12px', verticalAlign: 'middle', marginLeft: '8px', color: '#94A3B8' }}>CONTROL PANEL</span>}
               </Link>
             </div>
@@ -307,6 +318,17 @@ const LayoutWrapper = () => {
                       {user && user.role === 'customer' && (
                         <li><Link to="/orders">My Orders</Link></li>
                       )}
+                      <li>
+                        <a
+                          href="https://github.com/yogesh45-debug/electricstore"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                        >
+                          <GitHubIcon size={18} />
+                          <span>GitHub</span>
+                        </a>
+                      </li>
                       <li ref={searchMobileRef} style={{ padding: '8px 16px', position: 'relative' }}>
                         <form
                           onSubmit={(e) => {
@@ -458,6 +480,30 @@ const LayoutWrapper = () => {
               )}
 
               <div className="nav-buttons">
+                {/* GitHub Repo Link */}
+                <a
+                  href="https://github.com/yogesh45-debug/electricstore"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="GitHub Repository"
+                  aria-label="GitHub Repository"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '8px',
+                    color: 'inherit',
+                    textDecoration: 'none',
+                    borderRadius: '8px',
+                    opacity: 0.85,
+                    transition: 'opacity 0.2s, transform 0.2s'
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'scale(1.1)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.opacity = '0.85'; e.currentTarget.style.transform = 'scale(1)'; }}
+                >
+                  <GitHubIcon size={20} />
+                </a>
+
                 {/* Dark Mode Toggle */}
                 <button
                   id="dark-mode-toggle"
@@ -579,7 +625,10 @@ const LayoutWrapper = () => {
         <footer className="main-footer">
           <div className="footer-container">
             <div>
-              <h3 className="footer-logo">⚡ ElectroStore</h3>
+              <h3 className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <LogoIcon size={26} />
+                <span>ElectroStore</span>
+              </h3>
               <p style={{ maxWidth: '300px', fontSize: '13px' }}>
                 Your premium destination for high-performance consumer electronics.
               </p>
@@ -600,6 +649,35 @@ const LayoutWrapper = () => {
                   <li><Link to="/orders">Track Order</Link></li>
                   <li><Link to="/cart">My Cart</Link></li>
                   <li><Link to="/admin/login">Admin Portal</Link></li>
+                </ul>
+              </div>
+              <div className="footer-links-group">
+                <h4>GitHub</h4>
+                <ul>
+                  <li>
+                    <a
+                      href="https://github.com/yogesh45-debug/electricstore"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'inherit', textDecoration: 'none' }}
+                      onMouseEnter={e => e.currentTarget.style.color = 'var(--primary-accent)'}
+                      onMouseLeave={e => e.currentTarget.style.color = 'inherit'}
+                    >
+                      <GitHubIcon size={15} /> Repo
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/yogesh45-debug/electricstore/issues"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'inherit', textDecoration: 'none' }}
+                      onMouseEnter={e => e.currentTarget.style.color = 'var(--primary-accent)'}
+                      onMouseLeave={e => e.currentTarget.style.color = 'inherit'}
+                    >
+                      Issues
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
